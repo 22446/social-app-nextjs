@@ -23,7 +23,7 @@ function handleLogout(){
   </button>
   <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <div className="form-inline my-2 d-flex gap-2 my-lg-0">
-      {token?<><Link className="btn btn-outline-success my-2 my-sm-0 d-flex align-items-center"href={'/profile'}>{data?.data?.user?.photo?<Image src={data&&data?.data?.user?.photo} width={35} height={37} style={{width:'35px'}} alt={'profile pic'} /> :null} <p className='p-0 m-0'> {data?data?.data?.user.name:<i className="fa-solid fa-spinner"></i>}</p></Link>
+      {token?<><Link className="btn btn-outline-success my-2 my-sm-0 d-flex align-items-center"href={'/profile'}>{data?.data?.user?.photo?<Image src={data&&data?.data?.user?.photo} width={35} height={37} style={{width:'35px'}} alt={'profile pic'} /> :null} <p className='p-0 m-0'> {data?data?.data?.user?.name:<i className="fa-solid fa-spinner"></i>}</p></Link>
 
     <span className="btn btn-outline-danger my-2 my-sm-0 d-flex align-items-center" onClick={handleLogout}>Logout</span>
     </>
