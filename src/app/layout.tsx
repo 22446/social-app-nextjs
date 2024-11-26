@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 import Authcontextme from "@/_contexts/Authcontextme";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const queryClient = new QueryClient();
