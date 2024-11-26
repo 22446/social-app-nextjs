@@ -1,20 +1,22 @@
-"use client";
+'use client';
 import { authcontext } from "@/_contexts/Authcontextme";
 import axios from "axios";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as yup from "yup";
 
 export default function Register() {
   const router = useRouter();
   const { token } = useContext(authcontext);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (token || localStorage.getItem("token")) {
+    setIsClient(true); 
+    if (isClient && (token || localStorage.getItem("token"))) {
       router.push("/");
     }
-  }, [token, router]);
+  }, [isClient, token, router]);
 
   const registerGroup = useFormik({
     initialValues: {
@@ -63,16 +65,24 @@ export default function Register() {
     }),
   });
 
-  if (token || localStorage.getItem("token")) {
+  if (!isClient || token || localStorage.getItem("token")) {
     return null;
   }
 
   return (
-    <div className="container d-flex align-items-center justify-content-center" style={{height:'100vh'}}>
-      <form onSubmit={registerGroup.handleSubmit} className="w-75 mx-auto p-4 shadow rounded">
-      <h2 className="text-center">Sign up</h2>
+    <div
+      className="container d-flex align-items-center justify-content-center"
+      style={{ height: "100vh" }}
+    >
+      <form
+        onSubmit={registerGroup.handleSubmit}
+        className="w-75 mx-auto p-4 shadow rounded"
+      >
+        <h2 className="text-center">Sign up</h2>
+
+     
         <div className="form-group">
-          <label htmlFor="name">user name</label>
+          <label htmlFor="name">User name</label>
           <input
             type="text"
             className="form-control"
@@ -82,14 +92,14 @@ export default function Register() {
             id="name"
             placeholder="Enter name"
           />
-          {registerGroup.errors.name && registerGroup.touched.name ? (
+          {registerGroup.errors.name && registerGroup.touched.name && (
             <small className="form-text text-danger">
               {registerGroup.errors.name}
             </small>
-          ) : (
-            ""
           )}
         </div>
+
+        
         <div className="form-group">
           <label htmlFor="email">Email address</label>
           <input
@@ -101,16 +111,16 @@ export default function Register() {
             id="email"
             placeholder="Enter email"
           />
-          {registerGroup.errors.email && registerGroup.touched.email ? (
+          {registerGroup.errors.email && registerGroup.touched.email && (
             <small className="form-text text-danger">
               {registerGroup.errors.email}
             </small>
-          ) : (
-            ""
           )}
         </div>
+
+     
         <div className="form-group">
-          <label htmlFor="name">Date of birth</label>
+          <label htmlFor="dateOfBirth">Date of Birth</label>
           <input
             type="date"
             className="form-control"
@@ -118,21 +128,21 @@ export default function Register() {
             onChange={registerGroup.handleChange}
             onBlur={registerGroup.handleBlur}
             id="dateOfBirth"
-            placeholder="Enter dateOfBirth"
+            placeholder="Enter date of birth"
           />
           {registerGroup.errors.dateOfBirth &&
-          registerGroup.touched.dateOfBirth ? (
-            <small className="form-text text-danger">
-              {registerGroup.errors.dateOfBirth}
-            </small>
-          ) : (
-            ""
-          )}
+            registerGroup.touched.dateOfBirth && (
+              <small className="form-text text-danger">
+                {registerGroup.errors.dateOfBirth}
+              </small>
+            )}
         </div>
+
+        
         <div className="form-group">
-          <label htmlFor="email">Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             value={registerGroup.values.password}
             onChange={registerGroup.handleChange}
@@ -140,69 +150,74 @@ export default function Register() {
             id="password"
             placeholder="Enter password"
           />
-          {registerGroup.errors.password && registerGroup.touched.password ? (
+          {registerGroup.errors.password && registerGroup.touched.password && (
             <small className="form-text text-danger">
-              Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one digit, and one special character.
+              {registerGroup.errors.password}
             </small>
-          ) : (
-            ""
           )}
         </div>
+
+       
         <div className="form-group">
-          <label htmlFor="email">Password</label>
+          <label htmlFor="rePassword">Confirm Password</label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             value={registerGroup.values.rePassword}
             onChange={registerGroup.handleChange}
             onBlur={registerGroup.handleBlur}
             id="rePassword"
-            placeholder="Enter rePassword"
+            placeholder="Re-enter password"
           />
           {registerGroup.errors.rePassword &&
-          registerGroup.touched.rePassword ? (
-            <small className="form-text text-danger">
-              password confirmation dont match
-            </small>
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="form-group">
-          <div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="gender" // This must match the form field in Formik
-                id="female"
-                value="female" // Unique value for this option
-                onChange={registerGroup.handleChange}
-                onBlur={registerGroup.handleBlur}
-                checked={registerGroup.values.gender === "female"} // Binding the checked state
-              />
-              <label className="form-check-label" htmlFor="female">
-                Female
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="gender" // This must match the form field in Formik
-                id="male"
-                value="male" // Unique value for this option
-                onChange={registerGroup.handleChange}
-                onBlur={registerGroup.handleBlur}
-                checked={registerGroup.values.gender === "male"} // Binding the checked state
-              />
-              <label className="form-check-label" htmlFor="male">
-                Male
-              </label>
-            </div>
-          </div>
+            registerGroup.touched.rePassword && (
+              <small className="form-text text-danger">
+                {registerGroup.errors.rePassword}
+              </small>
+            )}
         </div>
 
+     
+        <div className="form-group">
+          <label>Gender</label>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+              onChange={registerGroup.handleChange}
+              onBlur={registerGroup.handleBlur}
+              checked={registerGroup.values.gender === "female"}
+            />
+            <label className="form-check-label" htmlFor="female">
+              Female
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              onChange={registerGroup.handleChange}
+              onBlur={registerGroup.handleBlur}
+              checked={registerGroup.values.gender === "male"}
+            />
+            <label className="form-check-label" htmlFor="male">
+              Male
+            </label>
+          </div>
+          {registerGroup.errors.gender && registerGroup.touched.gender && (
+            <small className="form-text text-danger">
+              {registerGroup.errors.gender}
+            </small>
+          )}
+        </div>
+
+        
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
