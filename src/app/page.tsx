@@ -92,52 +92,58 @@ export default function Home() {
         </div>
       ))}
 
-      {visible && selectedPost && (
+{visible && selectedPost && (
+  <div
+    className="position-fixed z-3 top-0 bottom-0 end-0 start-0 d-flex align-items-center justify-content-center"
+    onClick={handleCloseModal}
+    style={{
+      backgroundColor: 'rgba(0,0,0,0.5)', 
+      overflowY: 'auto', 
+    }}
+  >
+    <div className="container">
+      <div className="row justify-content-center">
         <div
-          className="position-fixed z-3 top-0 bottom-0 end-0 start-0 d-flex align-items-center justify-content-center"
-          onClick={handleCloseModal}
-          style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+          className="p-3 gap-2 rounded bg-white shadow d-flex flex-column mx-auto flex-md-row"
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            width: '100%',
+            maxWidth: '90%',
+            maxHeight: '90vh', 
+            overflow: 'auto',
+          }}
         >
-          <div className="container">
-            <div className="row">
-              <div
-                className="p-3 gap-2 rounded bg-white shadow d-flex flex-column mx-auto flex-md-row"
-                onClick={(e) => e.stopPropagation()} 
-                style={{
-                  maxWidth: '80%',
-                  maxHeight: '90%', 
-                }}
-              >
-                <div className="col-12 col-md-6">
-                  <div className="d-flex align-items-center">
-                    <Image src={selectedPost.user.photo} width={40} height={37} alt=""  />
-                    <p className='p-0 m-0'>{selectedPost.user.name}</p>
-                  </div>
-                  <p>{selectedPost.body}</p>
-                  {selectedPost.image?
-                 <Image
-                 src={selectedPost.image}
-                 className="w-100"
-                 alt=""
-                 width={500}
-                 height={400}
-                 style={{
-                   maxHeight: '400px', 
-                   objectFit: 'cover',  
-                   width: '100%',
-                 }}
-               />  
-                :null}
-                 
-                </div>
-                <div className="col-12 col-md-6 d-flex flex-column justify-content-end">
-                  <Comments id={selectedPost._id} />
-                </div>
-              </div>
+          <div className="col-12 col-md-6">
+            <div className="d-flex align-items-center mb-2">
+              <Image src={selectedPost.user.photo} width={40} height={37} alt="" />
+              <p className="p-0 m-0 ms-2">{selectedPost.user.name}</p>
             </div>
+            <p>{selectedPost.body}</p>
+            {selectedPost.image ? (
+              <Image
+                src={selectedPost.image}
+                className="w-100"
+                alt=""
+                width={500}
+                height={400}
+                style={{
+                  objectFit: 'cover',
+                  width: '100%',
+                  height: 'auto', 
+                }}
+              />
+            ) : null}
+          </div>
+
+          <div className="col-12 col-md-6 d-flex flex-column justify-content-end">
+            <Comments id={selectedPost._id} />
           </div>
         </div>
-      )}
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

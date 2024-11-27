@@ -65,7 +65,7 @@ export default function Updatepost({id}:any) {
       {visible ? (
         <div className="position-fixed z-3 top-0 bottom-0 end-0 start-0  d-flex align-items-center justify-content-center" onClick={()=>setVisible(false)} style={{backgroundColor:'rgba(0,0,0,0.5)'}}>
         
-        <div className="w-50 mx-auto p-5 gap-2 rounded bg-white shadow d-flex flex-column " onClick={(e)=>e.stopPropagation()}>
+        <div className="mx-auto p-5 gap-2 rounded bg-white shadow d-flex flex-column " onClick={(e)=>e.stopPropagation()}>
           <h4>Create post</h4>
           <input
             ref={caption}

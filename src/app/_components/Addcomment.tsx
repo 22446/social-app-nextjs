@@ -43,6 +43,7 @@ const[loading ,setLoading]= useState(false)
           ref={text}
           className="form-control p-2 w-100"
           type="text"
+          id={id}
           placeholder="add comment"
         />
         <button className="btn btn-outline-dark p-2" disabled={loading} onClick={handlePostComment}>{loading?'Loading..':'add'}</button>

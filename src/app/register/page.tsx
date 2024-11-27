@@ -88,6 +88,7 @@ export default function Register() {
             className="form-control"
             value={registerGroup.values.name}
             onChange={registerGroup.handleChange}
+            autoComplete="on"
             onBlur={registerGroup.handleBlur}
             id="name"
             placeholder="Enter name"
@@ -107,6 +108,7 @@ export default function Register() {
             className="form-control"
             value={registerGroup.values.email}
             onChange={registerGroup.handleChange}
+            autoComplete="on"
             onBlur={registerGroup.handleBlur}
             id="email"
             placeholder="Enter email"
@@ -126,6 +128,7 @@ export default function Register() {
             className="form-control"
             value={registerGroup.values.dateOfBirth}
             onChange={registerGroup.handleChange}
+            autoComplete="on"
             onBlur={registerGroup.handleBlur}
             id="dateOfBirth"
             placeholder="Enter date of birth"
@@ -146,6 +149,7 @@ export default function Register() {
             className="form-control"
             value={registerGroup.values.password}
             onChange={registerGroup.handleChange}
+            
             onBlur={registerGroup.handleBlur}
             id="password"
             placeholder="Enter password"
