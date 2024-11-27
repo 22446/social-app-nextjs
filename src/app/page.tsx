@@ -110,7 +110,8 @@ export default function Home() {
             width: '100%',
             maxWidth: '90%',
             maxHeight: '90vh', 
-            overflow: 'auto',
+            overflowY: 'auto',
+            overflowX:"hidden"
           }}
         >
           <div className="col-12 col-md-6">
