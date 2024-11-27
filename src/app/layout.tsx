@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Navbar from "./_components/Navbar";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -9,24 +9,24 @@ import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+
 const queryClient = new QueryClient();
-export default function RootLayout({ 
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  
   return (
+
     <html lang="en">
       <body>
-      <Authcontextme>
-      <QueryClientProvider client={queryClient}>
-        <Usercontextme>
-          <Navbar />
-          {children}
-          <Toaster/>
-          </Usercontextme>
+        <Authcontextme>
+          <QueryClientProvider client={queryClient}>
+            <Usercontextme>
+            <Navbar />
+              {children}
+              <Toaster />
+              </Usercontextme>
           </QueryClientProvider>
-          </Authcontextme>
+        </Authcontextme>
       </body>
     </html>
   );

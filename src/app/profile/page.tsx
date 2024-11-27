@@ -24,7 +24,7 @@ if(!token){
       {data?<><div style={{ minHeight: '50vh' }} className="bg-dark fw-bold d-flex align-items-center justify-content-center text-white flex-column">
         <Image src={data?.data?.user?.photo} width={120} height={120} alt={'usephoto'} />
         <p className="mt-2">Name: {data ? data?.data?.user?.name : 'loading'}</p>
-        <p>Birth Date: {data ? data?.data.user.dateOfBirth : 'loading'}</p>
+        <p>Birth Date: {data ? data?.data?.user?.dateOfBirth : 'loading'}</p>
         <p>Gender: {data ? data?.data?.user?.gender : 'loading'}</p>
       </div>
       <Userposts /> </>: <div className="d-flex align-items-center justify-content-center" style={{ height: 'calc(100vh - 60px)' }}>

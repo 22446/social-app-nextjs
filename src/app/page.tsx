@@ -18,10 +18,10 @@ export default function Home() {
   const [visible, setVisible] = useState(false); 
   const{token}= useContext(authcontext)
   useEffect(() => {
-    if(localStorage.getItem('token')!==null){
+  
     if (!token) {
       router.push("/login");
-    }
+    
   }
   }, [router, token]);
 
@@ -77,10 +77,10 @@ export default function Home() {
                 <p>{post.body}</p>
                 {post.image?<Image
                   src={post.image}
-                  className="w-100"
+                 
                   width={600}
-                  height={500}
-                  style={{ height: '500px', cursor: 'pointer' }}
+                  height={450}
+                  style={{cursor: 'pointer' ,width:'100%',height:'auto'}}
                   alt={'imagebodu'}
                   onClick={() => handleSelect(post)} 
                 />:null}
@@ -110,7 +110,7 @@ export default function Home() {
               >
                 <div className="col-12 col-md-6">
                   <div className="d-flex align-items-center">
-                    <Image src={selectedPost.user.photo} width={40} height={37} alt="" style={{ width: '40px' }} />
+                    <Image src={selectedPost.user.photo} width={40} height={37} alt=""  />
                     <p className='p-0 m-0'>{selectedPost.user.name}</p>
                   </div>
                   <p>{selectedPost.body}</p>
